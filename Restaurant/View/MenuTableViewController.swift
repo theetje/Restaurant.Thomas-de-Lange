@@ -28,6 +28,7 @@ class MenuTableViewController: UITableViewController {
         DispatchQueue.main.async {
             self.menuItems = menuItems
             self.tableView.reloadData()
+            
         }
     }
     
