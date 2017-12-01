@@ -10,7 +10,8 @@ import Foundation
 
 class MenuController {
     static let shared = MenuController()
-    let baseURL = URL(string: "http://localhost:8090/")!
+//    let baseURL = URL(string: "http://localhost:8090/")!
+    let baseURL = URL(string: "http://resto.mprog.nl/")!
     
     // GET categories
     // Eerste closure die de Categories op haald geen parameters of dergelijke mee

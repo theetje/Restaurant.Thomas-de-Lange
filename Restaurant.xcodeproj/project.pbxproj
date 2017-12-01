@@ -20,6 +20,7 @@
 		E9166C7F1FD035DC006D6AB6 /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9166C7E1FD035DC006D6AB6 /* MenuItems.swift */; };
 		E9166C821FD0381A006D6AB6 /* IntermediaryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9166C811FD0381A006D6AB6 /* IntermediaryModels.swift */; };
 		E9166C841FD039F5006D6AB6 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9166C831FD039F5006D6AB6 /* MenuController.swift */; };
+		E9B229441FD15CA100BB1E2E /* AddToOrderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B229431FD15CA100BB1E2E /* AddToOrderDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		E9166C7E1FD035DC006D6AB6 /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		E9166C811FD0381A006D6AB6 /* IntermediaryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediaryModels.swift; sourceTree = "<group>"; };
 		E9166C831FD039F5006D6AB6 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		E9B229431FD15CA100BB1E2E /* AddToOrderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToOrderDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 		E9166C861FD03A2F006D6AB6 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
+				E9B229431FD15CA100BB1E2E /* AddToOrderDelegate.swift */,
 				E9166C451FD02759006D6AB6 /* AppDelegate.swift */,
 			);
 			path = Delegates;
@@ -309,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B229441FD15CA100BB1E2E /* AddToOrderDelegate.swift in Sources */,
 				E9166C841FD039F5006D6AB6 /* MenuController.swift in Sources */,
 				E9166C7D1FD034DE006D6AB6 /* MenuItemDetailViewController.swift in Sources */,
 				E9166C791FD031D3006D6AB6 /* MenuTableViewController.swift in Sources */,

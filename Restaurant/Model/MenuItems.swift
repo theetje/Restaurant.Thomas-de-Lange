@@ -29,4 +29,3 @@ struct MenuItem: Codable {
 struct MenuItems: Codable {
     let items: [MenuItem]
 }
-
