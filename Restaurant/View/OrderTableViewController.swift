@@ -10,6 +10,38 @@ import UIKit
 
 class OrderTableViewController: UITableViewController, AddToOrderDelegate {
     var menuItems = [MenuItem]()
+    var minutes: Int?
+    
+    
+    @IBAction func submitTapped(_ sender: Any) {
+        let orderTotal = menuItems.reduce(0.0) {
+            (result, menuItem) -> Double in
+            return result + menuItem.price
+        }
+        let formattedOrder = String(format: "$%.2f", orderTotal)
+        
+        let alert = UIAlertController(title: "Confirm Order", message: "You are about to submit your order with a tota of \(formattedOrder)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Submit", style: .default) { action in
+            self.uploadOrder()
+            
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func uploadOrder() {
+        let menuIds = menuItems.map { $0.id }
+        MenuController.shared.submitOrder(menuIds: menuIds) {
+            (minutes) in
+            DispatchQueue.main.async {
+                if let minutes = minutes {
+                    self.minutes = minutes
+                    self.performSegue(withIdentifier: "ConfirmationSegue", sender: nil)
+                }
+            }
+        }
+    }
+    
     
     func updateBageNumber() {
         let badgeValue = menuItems.count > 0 ? "\(menuItems.count)" : nil
@@ -60,6 +92,14 @@ class OrderTableViewController: UITableViewController, AddToOrderDelegate {
             
         }
      }
+    
+    @IBAction func unwindToOrderList(segue: UIStoryboardSegue) {
+        if segue.identifier == "DismissConfirmation" {
+            menuItems.removeAll()
+            tableView.reloadData()
+            updateBageNumber()
+        }
+    }
 
 
     override func didReceiveMemoryWarning() {

@@ -10,13 +10,15 @@ import UIKit
 
 class MenuItemDetailViewController: UIViewController {
     
+    var delegate: AddToOrderDelegate?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var addToOrderButton: UIButton!
     
-    var delegate: AddToOrderDelegate?
+    var menuItem: MenuItem!
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {
         UIView.animate(withDuration: 0.3) {
@@ -26,9 +28,6 @@ class MenuItemDetailViewController: UIViewController {
         
         delegate?.added(menuItem: menuItem)
     }
-    
-    
-    var menuItem: MenuItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +43,17 @@ class MenuItemDetailViewController: UIViewController {
     }
     
     func updateUI() {
-        addToOrderButton.layer.cornerRadius = 5.0
         titleLabel.text = menuItem.name
         priceLabel.text = String(format: "$%.2f", menuItem.price)
         descriptionLabel.text = menuItem.description
-        
+        addToOrderButton.layer.cornerRadius = 5.0
+        MenuController.shared.fetchImage(url: menuItem.imageURL) {
+            (image) in
+            guard let image = image else { return }
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

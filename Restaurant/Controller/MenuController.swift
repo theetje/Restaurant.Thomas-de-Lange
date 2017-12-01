@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MenuController {
     static let shared = MenuController()
@@ -60,8 +61,9 @@ class MenuController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Geeft hier data de variabele mee (verpak de post in een array als json)
-        let data: [String: Any] = ["menuIds": menuIds]
+        let data: [String: [Int]] = ["menuIds": menuIds]
         let jsonEncoder = JSONEncoder()
+        print(data)
         let jsonData = try? jsonEncoder.encode(data)
         request.httpBody = jsonData
         let task = URLSession.shared.dataTask(with: request) {
@@ -70,6 +72,18 @@ class MenuController {
             if let data = data,
                 let preparationTime = try? jsonDecoder.decode(PreparationTime.self, from: data) {
                 completion(preparationTime.prepTime)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            if let data = data, let image = UIImage(data: data) {
+                completion(image)
             } else {
                 completion(nil)
             }
